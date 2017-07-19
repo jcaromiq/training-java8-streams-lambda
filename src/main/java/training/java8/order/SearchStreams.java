@@ -20,7 +20,10 @@ public class SearchStreams {
 	 * - shorten/clean it up
 	 */
 	public List<Order> p1_getActiveOrders(Customer customer) {
-		return customer.getOrders().stream().collect(toList()); 
+		return customer.getOrders().stream()
+				.filter(order -> order.getStatus().equals(Order.Status.ACTIVE))
+				.collect(toList());
+
 	}
 	
 	/**
