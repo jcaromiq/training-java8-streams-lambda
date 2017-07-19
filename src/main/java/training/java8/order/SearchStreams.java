@@ -68,7 +68,9 @@ public class SearchStreams {
 	 * - Challenge: return an Optional<creationDate>
 	 */
 	public Order p5_getMaxPriceOrder(Customer customer) {
-		return null; 
+		return customer.getOrders().stream()
+				.max((o1, o2) -> o1.getTotalPrice().compareTo(o2.getTotalPrice()))
+				.orElse(null);
 	}
 	
 	/**
