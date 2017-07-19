@@ -78,7 +78,9 @@ public class SearchStreams {
 	 * last 3 Orders sorted descending by creationDate
 	 */
 	public List<Order> p6_getLast3Orders(Customer customer) {
-		return null; 
+		return customer.getOrders().stream()
+				.sorted(Comparator.comparing(Order::getCreationDate).reversed())
+				.limit(3).collect(toList());
 	}
 	
 	
