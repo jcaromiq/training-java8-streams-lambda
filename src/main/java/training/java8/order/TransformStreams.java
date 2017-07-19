@@ -1,17 +1,9 @@
 package training.java8.order;
 
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toMap;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.SortedSet;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -21,6 +13,8 @@ import training.java8.order.entity.Order;
 import training.java8.order.entity.Order.PaymentMethod;
 import training.java8.order.entity.OrderLine;
 import training.java8.order.entity.Product;
+
+import static java.util.stream.Collectors.*;
 
 public class TransformStreams {
 
@@ -57,7 +51,9 @@ public class TransformStreams {
 	 * Note: Order.getCreationDate()
 	 */
 	public SortedSet<LocalDate> p03_getOrderDatesAscending(Customer customer) {
-		return null; 
+		return customer.getOrders().stream()
+				.map(order -> order.getCreationDate())
+				.collect(toCollection(TreeSet::new));
 	}
 	
 	
