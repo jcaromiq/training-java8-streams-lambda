@@ -2,6 +2,7 @@ package training.java8.order;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -69,7 +70,7 @@ public class SearchStreams {
 	 */
 	public Order p5_getMaxPriceOrder(Customer customer) {
 		return customer.getOrders().stream()
-				.max((o1, o2) -> o1.getTotalPrice().compareTo(o2.getTotalPrice()))
+				.max(Comparator.comparing(Order::getTotalPrice))
 				.orElse(null);
 	}
 	
