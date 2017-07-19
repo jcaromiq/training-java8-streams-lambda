@@ -45,7 +45,8 @@ public class SearchStreams {
 	 * @return true if customer has at least one order with status ACTIVE
 	 */
 	public boolean p3_hasActiveOrders(Customer customer) {
-		return true; 
+		return customer.getOrders().stream()
+				.anyMatch(Order::isActive);
 	}
 
 	/**
