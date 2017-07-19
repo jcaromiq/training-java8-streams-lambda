@@ -3,6 +3,7 @@ package training.java8.order;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import training.java8.order.entity.Customer;
 import training.java8.order.entity.Order;
@@ -32,7 +33,12 @@ public class SearchStreams {
 	 * - what do you do when you don't find it ? null/throw/Optional ?
 	 */
 	public Order p2_getOrderById(List<Order> orders, long orderId) {
-		return null; // orders.stream()
+		Predicate<Order> byOrderId = order -> order.getId().equals(orderId);
+
+		return orders.stream()
+				.filter(byOrderId)
+				.findAny()
+				.orElse(new Order());
 	}
 	
 	/**
