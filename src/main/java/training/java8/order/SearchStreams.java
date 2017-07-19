@@ -21,7 +21,7 @@ public class SearchStreams {
 	 */
 	public List<Order> p1_getActiveOrders(Customer customer) {
 		return customer.getOrders().stream()
-				.filter(order -> order.getStatus().equals(Order.Status.ACTIVE))
+				.filter(Order::isActive)
 				.collect(toList());
 
 	}

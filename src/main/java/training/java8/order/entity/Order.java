@@ -11,29 +11,31 @@ import java.util.List;
 
 public class Order {
 
-	public enum Status {
-		DRAFT, ACTIVE, INACTIVE
+
+
+    public enum Status {
+		DRAFT, ACTIVE, INACTIVE;
 	}
-	
+
+
 	public enum PaymentMethod {
 		CARD,
 		CASH_ON_SITE,
-		CASH_ON_DELIVERY
+		CASH_ON_DELIVERY;
 	}
-	
 	private Long id;
+
 	private Status status;
 	private List<OrderLine> orderLines;
 	private LocalDate creationDate;
 	private BigDecimal totalPrice;
 	private PaymentMethod paymentMethod;
-	
 	private LocalDate deliveryDueDate;
-	private Customer customer;
 
+	private Customer customer;
 	public Order() {
 	}
-	
+
 	public Order(Status status) {
 		this.status = status;
 	}
@@ -41,17 +43,21 @@ public class Order {
 	public Order(Long id) {
 		this.id = id;
 	}
-	
+
 	public Order(OrderLine... lines) {
 		this.orderLines = Arrays.asList(lines);
 	}
 
 	// TODO any helper methods ?
 
+	public boolean isActive() {
+		return getStatus().equals(Status.ACTIVE);
+	}
+
 	public List<OrderLine> getOrderLines() {
 		return orderLines;
 	}
-	
+
 	public void setOrderLines(List<OrderLine> orderLines) {
 		this.orderLines = orderLines;
 	}
