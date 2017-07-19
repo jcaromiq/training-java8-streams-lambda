@@ -47,7 +47,9 @@ public class TransformStreams {
 	 * Note: Order.getPaymentMethod()
 	 */
 	public Set<PaymentMethod> p02_getUsedPaymentMethods(Customer customer) {
-		return null; 
+		return customer.getOrders().stream()
+				.map(order -> order.getPaymentMethod())
+				.collect(Collectors.toSet());
 	}
 	
 	/**
