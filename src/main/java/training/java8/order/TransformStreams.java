@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import training.java8.order.dto.OrderDto;
@@ -28,18 +29,20 @@ public class TransformStreams {
 	 * Discussion:.. Make it cleanest!
 	 */
 	public List<OrderDto> p01_toDtos(List<Order> orders) {
-		
-		List<OrderDto> dtos = new ArrayList<>();
-		for (Order order : orders) {
-			OrderDto dto = new OrderDto();
-			dto.totalPrice = order.getTotalPrice(); 
-			dto.creationDate = order.getCreationDate();
-			dtos.add(dto);
-		}
-		return dtos;
-		
+		return orders.stream()
+				.map(this::toDTO)
+				.collect(Collectors.toList());
+
 	}
-	
+
+	private OrderDto toDTO(Order order) {
+		OrderDto dto = new OrderDto();
+		dto.totalPrice = order.getTotalPrice();
+		dto.creationDate = order.getCreationDate();
+		return dto;
+	}
+
+
 	/**
 	 * Note: Order.getPaymentMethod()
 	 */
